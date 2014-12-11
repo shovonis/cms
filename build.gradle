@@ -1,0 +1,61 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'war'
+
+group = 'net.therap_petproject.net.therap.cms'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+war {
+    baseName = 'net.therap.cms'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile 'org.codehaus.groovy:groovy-all:2.3.8'
+
+    compile 'org.springframework:spring-core:4.0.5.RELEASE'
+    compile 'org.springframework:spring-web:4.0.5.RELEASE'
+    compile 'org.springframework:spring-webmvc:4.0.5.RELEASE'
+    compile 'org.springframework:spring-orm:4.0.5.RELEASE'
+
+    compile 'org.springframework.data:spring-data-jpa:1.6.2.RELEASE'
+    compile 'org.hibernate:hibernate-core:4.3.5.Final'
+    compile 'org.hibernate:hibernate-entitymanager:4.3.5.Final'
+    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final'
+    compile 'org.hibernate.common:hibernate-commons-annotations:4.0.4.Final'
+    compile 'org.hibernate:hibernate-validator:5.1.2.Final'
+    compile 'javax.validation:validation-api:1.0.0.GA'
+    compile 'javax.validation:validation-api:1.1.0.Final'
+    compile 'com.h2database:h2:1.4.179'
+
+    compile 'org.slf4j:slf4j-api:1.7.7'
+    compile 'org.slf4j:slf4j-simple:1.7.7'
+    compile 'ch.qos.logback:logback-core:1.1.2'
+    compile 'ch.qos.logback:logback-classic:1.1.2'
+
+    compile 'commons-fileupload:commons-fileupload:1.3.1'
+    compile 'commons-io:commons-io:2.4'
+
+    runtime 'javax.servlet:jstl:1.2'
+    runtime 'mysql:mysql-connector-java:5.1.30'
+    runtime 'opensymphony:sitemesh:2.4.2'
+
+    testCompile 'org.springframework:spring-test:4.0.5.RELEASE'
+    testCompile 'junit:junit:4.11'
+    testCompile "org.mockito:mockito-core:1.9.5"
+
+    providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+
+}
+
+
+task deploy(type: Copy) {
+    from 'build/libs/net.therap.cms.war'
+    into '/home/rifatul.islam/apache-tomcat-7.0.53/webapps/'
+}
